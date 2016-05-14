@@ -1,143 +1,78 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <style>
-   @import url(http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
-   @import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
-   @import url(//fonts.googleapis.com/earlyaccess/cwtexkai.css);
-   @import url(//fonts.googleapis.com/earlyaccess/cwtexming.css);
-   @import url(//fonts.googleapis.com/earlyaccess/cwtexyen.css);
-    .node rect {
-      cursor: move;
-      fill-opacity: .9;
-      shape-rendering: crispEdges;
-    }
-
-    .node text {
-      pointer-events: none;
-      text-shadow: 0 1px 0 #fff;
-    }
-
-    .link {
-      fill: none;
-      stroke: #000;
-      stroke-opacity: .2;
-    }
-
-    .link:hover {
-      stroke-opacity: .5;
-    }
-
-    body,ul,li,a{
-     font-family: "cwtexhei", "Arial";
-    font-size:12pt;
-    }
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.bar {
-  fill: orange;
-}
-
-.bar:hover {
-  fill: orangered ;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
-
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-  
-
-
-  </style>
-  <title>創新及科技基金視覺化</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="//d3js.org/d3.v3.min.js"></script>
-  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-  <script src="pie.js"></script>
-  <script src="time.js"></script>
-  <script src="sankey.js"></script>
-  <script src="flow.js"></script>
-  <script src="table.js"></script>
-  <script>
-$(document).ready(function()
-{draw_pie();
-draw_flow();
-draw_time();
-draw_table();
-}
-);
-</script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <title>創新及科技基金視覺化</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"/></script>
+    <script src="//d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js" type="text/javascript"></script>
+    <script src="top_bubble.js" type="text/javascript"></script>
+    <script src="time.js" type="text/javascript"></script>
+    <script src="sankey.js" type="text/javascript"></script>
+    <script src="flow.js" type="text/javascript"></script>
+    <script src="matrix.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        draw_flow();
+        draw_time();
+        draw_bubble();
+        draw_matrix();
+    });
+    </script>
 </head>
+
 <body>
-<div class="container" style="width:100%">
+    <div class="container" style="width:100%">
+        <h2>創新及科技基金視覺化</h2>
 
-  <h2>創新及科技基金視覺化</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">基金範疇分佈圖</a></li>
-    <li><a data-toggle="tab" href="#menu1">基金流向圖</a></li>
-    <li><a data-toggle="tab" href="#menu2">基金每月走勢圖</a></li>
-    <li><a data-toggle="tab" href="#menu3">十大最高金額項目</a></li>
-  </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#menu1">基金流向圖</a></li>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <div id="pie">
-        <h3 style="font-family:cwtexhei">基金範疇分佈圖</h3>
-      </div>  
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>基金流向圖</h3>
-      <div id="flow">
-      </div>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>基金每月走勢圖</h3>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>十大最高金額項目</h3>
-    </div>
-  </div>
-</div>
+            <li><a data-toggle="tab" href="#menu2">基金每月消耗圖</a></li>
 
+            <li><a data-toggle="tab" href="#menu3">最大金額項目</a></li>
+
+            <li><a data-toggle="tab" href="#menu4">科技範疇與機構關係</a></li>
+
+            <li><a data-toggle="tab" href="#menu5">關於</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="menu1" class="tab-pane fade in active">
+                <h3>基金流向圖</h3>
+
+                <div id="flow"></div>
+            </div>
+
+            <div id="menu2" class="tab-pane fade">
+                <h3>基金每月消耗圖</h3>
+            </div>
+
+            <div id="menu3" class="tab-pane fade">
+                <h3>最大金額項目</h3>
+            </div>
+
+            <div id="menu4" class="tab-pane fade">
+                <h3>科技範疇與機構關係</h3>
+
+                <div id="matrix"></div>
+            </div>
+
+            <div id="menu5" class="tab-pane fade">
+                <h3>關於</h3>
+                更新日期: 2016-06-12<br/>
+                聯絡: <a href="mailto:howa.wong@gmail.com">howa.wong@gmail.com</a><br/>
+                數據(JSON 格式, 英文): <a href="projects.json">下載</a><br/>
+                網絡爬蟲軟件源碼: <a href="https://github.com/howawong/hong_kong_itf_crawler">Github</a><br/>
+                數據來源: <a href="https://www.itf.gov.hk/">創新及科技基金</a><br/>
+                香港特區政府為數據版權擁有人
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-

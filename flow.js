@@ -1,9 +1,15 @@
+/*
+ * Author: @d3noob http://bl.ocks.org/d3noob/c9b90689c1438f57d649
+ *
+ *
+ */
+
 function draw_flow()
 {
-    var units = "M HKD";
+    var units = "百萬";
 
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = $(document).width() * 0.75  - margin.left - margin.right,
+        width =  1400  - margin.left - margin.right,
         height = 1200 - margin.top - margin.bottom;
 
     var formatNumber = d3.format(",.0f"),    // zero decimal places
